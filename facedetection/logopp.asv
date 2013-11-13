@@ -1,0 +1,4 @@
+function [I,Rg,By] = logopp(X)
+% function [I,Rg,By] = logopp(X)
+%   transform the input (color) image into log-opponent values
+end

@@ -1,0 +1,35 @@
+function detectface(X)
+    H = size(X,1);
+    W = size(X,2);
+    [I,Rg,By] = logopp(X);
+    SCALE = round((W+H)/320);
+    if (SCALE == 0)
+        SCALE = 1;
+    end
+    Rg = medfilt2(Rg,[4*SCALE 4*SCALE]);
+    By = medfilt2(By,[4*SCALE 4*SCALE]);
+    I_filt = medfilt2(I, [8*SCALE 8*SCALE]);
+    MAD = abs(I-I_filt);
+    MAD = medfilt2(MAD, [12*SCALE, 12*SCALE]);
+    hue = (atan2(Rg,By));
+    saturation = sqrt(Rg.*Rg+By.*By);
+    map = zeros(size(I));
+    imshow(saturation,[]);
+    
+    for i=1:H
+        for j=1:
+    end
+    for y=1:row,
+        for x=1:column,
+
+            if (MAD(y,x)<4.5 & 120<hue(y,x) & hue(y,x)<160 & 10<saturation(y,x) & saturation(y,x)<60),
+                map(y,x) = 1;
+            end
+
+            if (MAD(y,x)<4.5 & 150<hue(y,x) & hue(y,x)<180 & saturation(y,x)>20 & saturation(y,x)<80),
+                map(y,x) = 1;
+            end
+
+        end
+    end
+end
